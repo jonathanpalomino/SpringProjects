@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
-
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ 
+ <navigation-rule>
+  <from-view-id>/pages/login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>valido</from-outcome>
+   <to-view-id>/pages/principal.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>invalido</from-outcome>
+   <to-view-id>/pages/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/pages/principal.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>cerrar</from-outcome>
+   <to-view-id>/pages/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <!-- SpringBeanFacesELResolver permite la inyecceion de beans de spring con el contexto JSF-->
+ <application>
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+ </application>
 </faces-config>

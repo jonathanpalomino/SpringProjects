@@ -1,18 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"> 
-
-<h:head></h:head> 
-<body>
-    <rich:panel>
-        <f:facet name="header">
-        Pagina Login
-        </f:facet>
-		<h:outputText value="Panel Body" /> 
-	</rich:panel>
-</body> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<!-- <link rel="shortcut icon" type="image/x-icon" -->
+<!-- 	href="#{request.contextPath}/imagenes/favicon.png" /> -->
+</head>
+<body id="fondo">
+	<h:form>
+		<table align="center">
+			<tr>
+<!-- 				<td><img -->
+<!-- 					src="#{facesContext.externalContext.requestContextPath}/imagenes/logo.png"></img> -->
+<!-- 				</td> -->
+			</tr>
+		</table>
+		<table align="center">
+			<tr>
+				<td><h:outputText value="Usuario" /></td>
+				<td><h:inputText value="#{loginController.usuario}" /></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Contraseña" /></td>
+				<td><h:inputSecret value="#{loginController.contrasena}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><p:messages style="color: red;" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><h:commandButton
+						action="#{loginController.validarUsuario()}" value="Acceder"
+						style=" width : 114px;" /></td>
+			</tr>
+		</table>
+	</h:form>
+</body>
 </html>
