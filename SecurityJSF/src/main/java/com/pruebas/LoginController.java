@@ -2,6 +2,9 @@ package com.pruebas;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +25,10 @@ public class LoginController implements Serializable {
 	private String usuario;
 
 	private String contrasena;
+	
+	private String ambiente;
+	
+	private String nombreUsuario;
 
 	//Ya fue inyectado previamente, retorno su instancia
 	@Autowired
@@ -38,11 +45,13 @@ public class LoginController implements Serializable {
 				SecurityContextHolder.getContext().setAuthentication(authenticate);
 			}
 		} catch (BadCredentialsException e) {
-			// e.printStackTrace();
+		      FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Credenciales", null);
+		      FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			retorno = "invalido";
 		}
 		catch (UsernameNotFoundException e) {
-			// e.printStackTrace();
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Usuario no Existente", null);
+		      FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			retorno = "invalido";
 		}
 		return retorno;
@@ -62,5 +71,27 @@ public class LoginController implements Serializable {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	public String getAmbiente() {
+		return ambiente;
+	}
+
+	public void setAmbiente(String ambiente) {
+		this.ambiente = ambiente;
+	}
+
+	/**
+	 * @return the nombreUsuario
+	 */
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	/**
+	 * @param nombreUsuario the nombreUsuario to set
+	 */
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 }
